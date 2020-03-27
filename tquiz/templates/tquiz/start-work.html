@@ -1,0 +1,49 @@
+{% extends './base.html' %}
+
+{% block content %}
+
+<!-- Progress bar -->
+<div   style="position: relative; top : 80px;">
+	<div id="myProgress"><div id="myBar">1%</div>
+</div>
+<div style="position: relative; top: 70px;">
+	<!-- tab controllers -->
+	<div class="w3-row">
+		<div class="w3-col s6 w3-center w3-padding active not-answered tabNav">Not Answered</div>
+		<div class="w3-col s6 w3-center w3-padding answered tabNav w3-blue">Answered</div>
+	</div>
+
+	<!-- tab content -->
+	<div>
+		<div class="tabContent" id="not-answered">
+			<div class="w3-row w3-margin">
+				<form method="post" action="{% url 'tquiz:results' %}">
+					{% csrf_token %}
+					<div class="w3-col s11 w3-card-4">
+						<ol type="1">
+							{% for question, choices in questionList.items %}
+							<li>{{question}}</li>
+							<ol type="a">
+								{% for choice in choices %}
+								<li><input type="radio" name="{{question}}" id='{{choice.choice}}' value="{{choice.choice}}">
+									<label for="{{choice.choice}}">{{choice.choice}}</label>
+								</li>
+								{% endfor %}
+							</ol>
+							{% endfor %}
+						</ol>
+						<input type="submit" id="auto-submit" hidden="hidden">
+					</div>
+				</form>
+				
+			</div>
+		</div>
+
+		<div class="w3-hide tabContent" id="answered">
+			<h6>Answered questions</h6>
+		</div>
+	</div>
+
+</div>
+
+{% endblock %}

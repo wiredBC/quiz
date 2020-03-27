@@ -1,0 +1,72 @@
+{% extends './base.html' %}
+{% block content %}
+<div style="position: relative; top: 70px;">
+	<div class="row w3-blue w3-bar">
+		<div class="actionNav w3-center w3-col s4 m4 w3-border-right w3-button" id="filter">Filter<span class="fa fa-filter w3-margin-left"></span></div>
+		<div class="actionNav w3-center w3-col s4 m4 w3-border-right w3-button" id="random">Random<span class="fa fa-random w3-margin-left"></span></div>
+		<div class="actionNav w3-center w3-col s4 m4 w3-button" id="sort">Sort<span class="fa fa-sort w3-margin-left"></span></div>
+	</div>
+
+	<!-- filters -->
+	<div class="overlay-action w3-row" id="f-content">
+		<div class="overlay-action-content">
+			<p class="w3-large">Please select the kind of filter you want to apply</p>
+			<form>
+				<div class="w3-col s5 w3-margin">
+					<ul>
+						<li>Level</li>
+						<input type="checkbox" name="100"><span>100</span>
+					</ul>
+				</div>
+				<div class="w3-col s5 w3-margin">
+					<ul>
+						<li>Programme</li>
+						<input type="checkbox" name="100" value="100"><span>RGN</span>
+					</ul>
+				</div>
+				<div class="w3-col s5 w3-margin">
+					<ul>
+						<li>Course</li>
+						<input type="checkbox" name="anatomy 1"><span>Anatomy 1</span>
+					</ul>
+				</div>
+				<div class="w3-col s5 w3-margin">
+					<ul>
+						<li>Time</li>
+						<input type="checkbox" name="100"><span>10 min</span>
+					</ul>
+				</div>
+				<div class="w3-bar w3-col s12 w3-center w3-margin">
+					<button type="submit" class="w3-button w3-blue">Apply filter</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- quizes -->
+	<div class="">
+		<div class="w3-row w3-margin">
+			{% for quiz in quizList %}
+			<div class="w3-col l3 m5 s11 w3-card-4 w3-round">
+				<a href="{% url 'tquiz:startwork' quiz.name %}">
+					<ul class="w3-col s8">
+						<li>Name: {{quiz.name}} </li>
+						<li>Course: {{quiz.course}} </li>
+						<li> Subject: {{quiz.subject}} </li>
+						<li> Time : {{quiz.time}}</li>
+					</ul>
+				
+					<div class="w3-col s4">
+						{% load static %}
+						<img src="{% static 'tquiz/img/myself.jpg' %}" class="w3-image w3-round">
+					</div>
+				</a>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+
+</div>
+{% endblock %}
+
+

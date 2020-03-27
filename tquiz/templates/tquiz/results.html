@@ -1,0 +1,24 @@
+{% extends './base.html' %}
+
+
+{% block content %}
+<div style="position: relative; top: 60px;">
+	<div class="w3-card-4 w3-margin w3-padding">
+		<p>Correct Answer(s): {{ results.correct }}</p>
+		<p>Wrong Answer(s): {{ results.wrong }}</p>
+		<p>Unaswered Question(s): {{ results.miss }}</p>
+		<p class="m-scheme"> Click <span class="w3-button w3-blue w3-round-xxlarge">here </span>to view detailed results and marking scheme </p>
+	</div>
+
+	<div id="detailed-res" class="w3-hide w3-margin">
+		<ol type="1">
+			{% for question, answer in results.marking_scheme.items %}
+			<li>{{question}}</li>
+			<p>Ans: {{answer}}</p>
+			{% endfor %}
+		</ol>
+	</div>
+</div>
+
+
+{% endblock %}

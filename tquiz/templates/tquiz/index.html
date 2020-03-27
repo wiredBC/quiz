@@ -1,0 +1,69 @@
+{% extends './base.html' %}
+
+{% block content %}
+
+<div style="position: relative; top: 100px;">
+
+	<div class="w3-row w3-bar w3-blue">
+	<!-- optionNav -->
+		<div class="w3-col active s4 w3-center tabNav quiz"><h5>Quiz</h5></div>
+
+		<div class="w3-col s4 w3-center tabNav tutorials"><h5>Tutorials</h5></div>
+
+		<div class="w3-col s4 w3-center tabNav q-n-a"><h5>Q & A</h5></div>
+	</div>
+
+	<!-- div for quiz -->
+	<div class="tabContent" id="quiz">
+		<div class="w3-row w3-margin">
+			{% for quiz in quizList %}
+			<div class="w3-col l3 m5 s11 w3-card-4 w3-round">
+				<a href="{% url 'tquiz:startwork' quiz.name %}">
+					<ul class="w3-col s8">
+						<li>Name: {{quiz.name}} </li>
+						<li>Course: {{quiz.course}} </li>
+						<li> Subject: {{quiz.subject}} </li>
+						<li> Time : {{quiz.time}}</li>
+					</ul>
+				
+					<div class="w3-col s4">
+						{% load static %}
+						<img src="{% static 'tquiz/img/myself.jpg' %}" class="w3-image w3-round">
+					</div>
+				</a>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+
+
+	<!-- div for Tutorials -->
+	<div class="tabContent w3-hide" id="tutorials">
+		<div class="w3-row l3 m5 s11 w3-card-2 w3-margin">
+			<div class="w3-col s6 w3-margin">
+				<h5>Course: RGN </h5>
+				<h5> Subject: Anatomy I </h5>
+				<h5> Level: 100 </h5>
+			</div>
+			<div class="w3-col s4">
+				<img src="" class="w3-image">
+			</div>
+		</div>
+	</div>
+
+	<!-- div for Q&A -->
+	<div class="tabContent w3-hide" id="q-n-a">
+		<div class="w3-row l3 m5 s11 w3-card-2 w3-margin">
+			<div class="w3-col s6 w3-margin">
+				<h5>Questions</h5>
+				<h5> Subject: Anatomy I </h5>
+				<h5> Level: 100 </h5>
+			</div>
+			<div class="w3-col s4">
+				<img src="" class="w3-image">
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
